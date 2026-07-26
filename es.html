@@ -16,8 +16,8 @@
     <meta property="og:title" content="Etranslink — El hub logístico de América Latina" />
     <meta property="og:description" content="Noticias, costos de carretera y conexiones entre cargadores y transportistas." />
     <meta property="og:url" content="https://etranslink.digital/es/" />
-    <link rel="stylesheet" href="/styles.css?v=5" />
-    <script src="/app.js?v=2" defer></script>
+    <link rel="stylesheet" href="/styles.css?v=6" />
+    <script src="/app.js?v=3" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -26,6 +26,19 @@
         "url": "https://etranslink.digital/es/",
         "description": "Portal de noticias, inteligencia y negocios para la logística latinoamericana.",
         "areaServed": ["Latin America", "BR", "AR", "CL", "CO", "MX", "PE", "UY", "PY", "BO", "EC"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Anísio Haddad, 8001 - Jardim Aclimação",
+          "addressLocality": "São José do Rio Preto",
+          "addressRegion": "SP",
+          "postalCode": "15091-710",
+          "addressCountry": "BR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -20.8451335,
+          "longitude": -49.4015081
+        },
         "knowsAbout": ["Logística", "Transporte por carretera", "Supply chain", "Agronegocios", "Industria", "Comercio exterior"]
       }
     </script>
@@ -98,10 +111,12 @@
         <div class="sector-grid"><a href="#newsletter"><span>01</span><h3>Agro</h3><p>Cosecha, almacenamiento, exportación y fletes.</p><b>↗</b></a><a href="#newsletter"><span>02</span><h3>Industria</h3><p>Suministros, producción, distribución y operaciones críticas.</p><b>↗</b></a><a href="#newsletter"><span>03</span><h3>Retail</h3><p>Abastecimiento, omnicanalidad, última milla y devoluciones.</p><b>↗</b></a><a href="#newsletter"><span>04</span><h3>Comex</h3><p>Puertos, aduanas, importación, exportación y comercio global.</p><b>↗</b></a></div>
       </section>
       <section class="manifesto"><p>AMÉRICA LATINA NO SE DETIENE.</p><h2>Quien tiene información<br />llega <em>más lejos.</em></h2><div class="manifesto-bottom"><p>Etranslink transforma conocimiento en mejores decisiones y conexiones en nuevas oportunidades.</p><a class="button primary" href="#conectar">Únete a la red <span>↗</span></a></div></section>
+      <section class="office" id="contacto"><div class="office-copy"><p class="eyebrow"><span></span> CONTACTO & OPERACIÓN</p><h2>Etranslink en<br /><em>São José do Rio Preto.</em></h2><p>Una base en el interior de São Paulo, conectada con los corredores que mueven industria, retail, agro y comercio exterior.</p><address>Av. Anísio Haddad, 8001 — Jardim Aclimação<br />São José do Rio Preto — SP, 15091-710</address><p class="office-coordinates">−20.84513, −49.40151</p><a class="button primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=-20.8451335%2C-49.4015081" target="_blank" rel="noopener noreferrer">Abrir ruta en el mapa <span>↗</span></a></div><div class="office-map"><iframe title="Mapa de la oficina Etranslink en São José do Rio Preto" src="https://www.openstreetmap.org/export/embed.html?bbox=-49.4075%2C-20.8511%2C-49.3955%2C-20.8391&amp;layer=mapnik&amp;marker=-20.8451335%2C-49.4015081" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></section>
       <section class="newsletter" id="newsletter"><div><span>RESUMEN ETRANSLINK</span><h2>La logística latinoamericana,<br />directo en tu correo.</h2></div><form id="newsletter-form"><label for="newsletter-email">Tu mejor correo</label><div><input id="newsletter-email" type="email" placeholder="tu@empresa.com" required /><button type="submit">Quiero recibirlo ↗</button></div><small>Sin ruido. Solo lo que realmente mueve al sector.</small></form></section>
     </main>
     <footer><div class="footer-brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><strong>ETRANS<em>LINK</em></strong></div><p>Información que mueve.<br />Conexiones que entregan.</p><div><a href="#noticias">Noticias</a><a href="#costos">Indicadores</a><a href="#sectores">Sectores</a><a href="#conectar">Conectar</a></div><div class="footer-bottom"><span>© 2026 ETRANSLINK</span><span>LATAM · LOGÍSTICA EN MOVIMIENTO</span><a href="#contenido">VOLVER ARRIBA ↑</a></div></footer>
     <dialog class="connection-dialog" id="connection-dialog"><button class="dialog-close" aria-label="Cerrar formulario">×</button><p class="eyebrow"><span></span> CONEXIÓN ETRANSLINK</p><h2 id="dialog-title">Cuéntanos sobre tu carga.</h2><p id="dialog-description">Completa los datos iniciales para continuar la atención por WhatsApp.</p><form id="connection-form"><input type="hidden" id="profile-type" value="Cargador" /><label>Nombre o empresa<input id="contact-name" required placeholder="¿Cómo podemos llamarte?" /></label><div class="form-row"><label>Origen<input id="cargo-origin" required placeholder="Ciudad / País" /></label><label>Destino<input id="cargo-destination" required placeholder="Ciudad / País" /></label></div><label>¿Qué necesitas?<textarea id="cargo-details" required placeholder="Tipo de carga, vehículo, frecuencia o área de operación"></textarea></label><button class="button primary" type="submit">Continuar por WhatsApp <span>↗</span></button></form></dialog>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <aside class="consent-banner" id="consent-banner" aria-labelledby="consent-title" aria-modal="true" role="dialog" hidden><div class="consent-copy"><span id="consent-eyebrow">PRIVACIDAD & EXPERIENCIA</span><h2 id="consent-title">Cookies e idioma de tu región.</h2><p id="consent-text">Usamos únicamente cookies de preferencia. Con tu autorización, consultamos tu ubicación una vez para elegir portugués o español. Tu ubicación no se envía ni se almacena.</p></div><div class="consent-actions"><button type="button" class="consent-primary" id="consent-location">Aceptar y usar ubicación</button><button type="button" class="consent-secondary" id="consent-essential">Solo necesarios</button></div></aside>
   </body>
 </html>

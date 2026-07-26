@@ -38,6 +38,111 @@ const regionData = {
 };
 
 const spanish = document.documentElement.lang.startsWith("es");
+const currentLanguage = spanish ? "es" : "pt";
+
+function setPreferenceCookie(name, value) {
+  const secure = location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `${name}=${encodeURIComponent(value)}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+}
+
+function getPreferenceCookie(name) {
+  const prefix = `${name}=`;
+  const item = document.cookie.split("; ").find((cookie) => cookie.startsWith(prefix));
+  return item ? decodeURIComponent(item.slice(prefix.length)) : null;
+}
+
+function browserLanguage() {
+  return (navigator.language || "").toLowerCase().startsWith("pt") ? "pt" : "es";
+}
+
+function languageFromCoordinates(latitude, longitude) {
+  const isBrazil = latitude >= -34 && latitude <= 6 && longitude >= -74 && longitude <= -34;
+  return isBrazil ? "pt" : "es";
+}
+
+function routeToLanguage(language) {
+  const destination = language === "pt" ? "/pt-br/" : "/es/";
+  if (location.pathname !== destination) location.replace(destination);
+}
+
+document.querySelectorAll(".language-nav a, .mobile-languages a").forEach((link) => {
+  link.addEventListener("click", () => {
+    setPreferenceCookie("etranslink_language", link.getAttribute("href").startsWith("/es") ? "es" : "pt");
+  });
+});
+
+const consentBanner = document.querySelector("#consent-banner");
+const consentCopy = {
+  pt: {
+    eyebrow: "PRIVACIDADE & EXPERIÊNCIA",
+    title: "Cookies e idioma da sua região.",
+    text: "Usamos apenas cookies de preferência. Com sua autorização, consultamos sua localização uma vez para escolher português ou espanhol. Sua localização não é enviada nem armazenada.",
+    locate: "Aceitar e usar localização",
+    essential: "Somente necessários"
+  },
+  es: {
+    eyebrow: "PRIVACIDAD & EXPERIENCIA",
+    title: "Cookies e idioma de tu región.",
+    text: "Usamos únicamente cookies de preferencia. Con tu autorización, consultamos tu ubicación una vez para elegir portugués o español. Tu ubicación no se envía ni se almacena.",
+    locate: "Aceptar y usar ubicación",
+    essential: "Solo necesarios"
+  }
+};
+
+function showConsentBanner() {
+  const copy = consentCopy[browserLanguage()];
+  document.querySelector("#consent-eyebrow").textContent = copy.eyebrow;
+  document.querySelector("#consent-title").textContent = copy.title;
+  document.querySelector("#consent-text").textContent = copy.text;
+  document.querySelector("#consent-location").textContent = copy.locate;
+  document.querySelector("#consent-essential").textContent = copy.essential;
+  consentBanner.hidden = false;
+}
+
+function saveConsent(type) {
+  setPreferenceCookie("etranslink_consent", type);
+  consentBanner.hidden = true;
+}
+
+document.querySelector("#consent-essential").addEventListener("click", () => {
+  saveConsent("essential");
+  const preferred = getPreferenceCookie("etranslink_language") || browserLanguage();
+  setPreferenceCookie("etranslink_language", preferred);
+  routeToLanguage(preferred);
+});
+
+document.querySelector("#consent-location").addEventListener("click", () => {
+  saveConsent("location");
+  if (!navigator.geolocation) {
+    const preferred = browserLanguage();
+    setPreferenceCookie("etranslink_language", preferred);
+    routeToLanguage(preferred);
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    ({ coords }) => {
+      const preferred = languageFromCoordinates(coords.latitude, coords.longitude);
+      setPreferenceCookie("etranslink_language", preferred);
+      routeToLanguage(preferred);
+    },
+    () => {
+      const preferred = browserLanguage();
+      setPreferenceCookie("etranslink_language", preferred);
+      routeToLanguage(preferred);
+    },
+    { enableHighAccuracy: false, timeout: 8000, maximumAge: 86400000 }
+  );
+});
+
+const savedConsent = getPreferenceCookie("etranslink_consent");
+const savedLanguage = getPreferenceCookie("etranslink_language");
+if (!savedConsent) {
+  showConsentBanner();
+} else if (savedLanguage && savedLanguage !== currentLanguage) {
+  routeToLanguage(savedLanguage);
+}
+
 const spanishInsights = {
   brasil: "El Centro-Oeste sigue competitivo en diésel, mientras los neumáticos presionan el costo fijo en todas las regiones.",
   norte: "Las distancias y la disponibilidad elevan los tres indicadores en el Norte; consolidar compras gana importancia.",
