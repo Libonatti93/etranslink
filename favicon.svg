@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Etranslink</title>
+  <rect width="64" height="64" rx="10" fill="#111712"/>
+  <g transform="translate(13 11) skewX(-14)">
+    <rect x="0" y="20" width="10" height="22" fill="#fffef8"/>
+    <rect x="14" y="10" width="10" height="32" fill="#fffef8"/>
+    <rect x="28" width="10" height="42" fill="#b7f137"/>
+  </g>
+</svg>
