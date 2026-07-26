@@ -114,7 +114,18 @@ button { color: inherit; }
 .continental-insight blockquote { max-width: 800px; margin: 0; font-size: clamp(20px, 2.5vw, 35px); line-height: 1.15; letter-spacing: -.04em; }
 .south-america-cost { color: var(--text-inverse); background: var(--deep-ink); }
 .south-america-cost .cost-heading > p { color: #bdc8bf; }
-.south-america-cost .eyebrow { color: var(--signal-green); }
+.south-america-cost .eyebrow {
+  width: max-content;
+  padding: 9px 12px;
+  color: var(--deep-ink);
+  background: var(--signal-green);
+  font-weight: 700;
+  line-height: 1.2;
+}
+.south-america-cost .eyebrow > span {
+  background: var(--deep-ink);
+  box-shadow: none;
+}
 .south-america-cost .country-price-grid { border-color: #405044; }
 .south-america-cost .country-price-grid article {
   color: var(--text-inverse);
